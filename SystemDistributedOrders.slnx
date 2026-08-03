@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SystemDistributedOrders.Api/SystemDistributedOrders.Api.csproj" />
+    <Project Path="src/SystemDistributedOrders.Application/SystemDistributedOrders.Application.csproj" />
+    <Project Path="src/SystemDistributedOrders.Contracts/SystemDistributedOrders.Contracts.csproj" />
+    <Project Path="src/SystemDistributedOrders.Domain/SystemDistributedOrders.Domain.csproj" />
+    <Project Path="src/SystemDistributedOrders.Infrastructure/SystemDistributedOrders.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SystemDistributedOrders.Api.Tests/SystemDistributedOrders.Api.Tests.csproj" />
+    <Project Path="tests/SystemDistributedOrders.Application.Tests/SystemDistributedOrders.Application.Tests.csproj" />
+    <Project Path="tests/SystemDistributedOrders.Domain.Tests/SystemDistributedOrders.Domain.Tests.csproj" />
+    <Project Path="tests/SystemDistributedOrders.Infrastructure.Tests/SystemDistributedOrders.Infrastructure.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,46 @@
+@host = http://localhost:5148
+@customerId = 77f50e73-1a24-40c5-a134-67a68acc9f8a
+@orderId = substitua-pelo-id-do-pedido
+@productId = substitua-pelo-id-do-produto
+
+### Listar os produtos iniciais
+GET {{host}}/api/products
+Accept: application/json
+
+### Consultar produto
+GET {{host}}/api/products/{{productId}}
+Accept: application/json
+
+### Criar pedido
+POST {{host}}/api/orders
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}"
+}
+
+### Adicionar produto ao pedido
+POST {{host}}/api/orders/{{orderId}}/items
+Content-Type: application/json
+
+{
+  "productId": "{{productId}}",
+  "quantity": 2
+}
+
+### Enviar pedido para pagamento
+POST {{host}}/api/orders/{{orderId}}/submit
+
+### Marcar pedido como pago
+POST {{host}}/api/orders/{{orderId}}/pay
+
+### Cancelar pedido
+POST {{host}}/api/orders/{{orderId}}/cancel
+
+### Consultar pedido
+GET {{host}}/api/orders/{{orderId}}
+Accept: application/json
+
+### Listar pedidos
+GET {{host}}/api/orders
+Accept: application/json

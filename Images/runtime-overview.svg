@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Visão geral da execução local do System Distributed Orders</title>
+  <desc id="desc">Fluxo entre usuário e Swagger, API .NET 10 executada na máquina, SQL Server local e Kafka em Docker, incluindo publicação de eventos, consumo em BackgroundService e persistência em volume Docker.</desc>
+
+  <defs>
+    <linearGradient id="page" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="apiHeader" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5b21b6"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="kafkaHeader" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#374151"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/>
+    </marker>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; }
+      .title { font-size: 30px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-size: 15px; fill: #475569; }
+      .section { font-size: 17px; font-weight: 700; fill: #ffffff; }
+      .card-title { font-size: 17px; font-weight: 700; fill: #0f172a; }
+      .body { font-size: 14px; fill: #334155; }
+      .small { font-size: 12px; fill: #64748b; }
+      .flow { font-size: 13px; font-weight: 600; fill: #1e3a8a; }
+      .flow-purple { font-size: 13px; font-weight: 600; fill: #5b21b6; }
+      .flow-amber { font-size: 13px; font-weight: 600; fill: #92400e; }
+      .mono { font-family: Consolas, "Courier New", monospace; font-size: 13px; fill: #334155; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="900" fill="url(#page)"/>
+
+  <text x="720" y="55" text-anchor="middle" class="title">Execução local — System Distributed Orders</text>
+  <text x="720" y="82" text-anchor="middle" class="subtitle">API e SQL Server na máquina • Kafka isolado em Docker • eventos processados em segundo plano</text>
+
+  <!-- Usuário -->
+  <g filter="url(#shadow)">
+    <rect x="55" y="260" width="230" height="190" rx="18" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="170" cy="310" r="25" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="170" cy="303" r="8" fill="#2563eb"/>
+    <path d="M151 329 Q170 311 189 329" fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+    <text x="170" y="361" text-anchor="middle" class="card-title">Usuário / Desenvolvedor</text>
+    <text x="170" y="388" text-anchor="middle" class="body">Swagger UI</text>
+    <rect x="83" y="405" width="174" height="28" rx="7" fill="#eff6ff"/>
+    <text x="170" y="424" text-anchor="middle" class="mono">localhost:5148/swagger</text>
+  </g>
+
+  <!-- Máquina local -->
+  <rect x="350" y="120" width="1035" height="675" rx="24" fill="#ffffff" fill-opacity="0.52" stroke="#94a3b8" stroke-width="2" stroke-dasharray="9 7"/>
+  <rect x="380" y="101" width="205" height="38" rx="19" fill="#475569"/>
+  <text x="482" y="126" text-anchor="middle" class="section">Máquina local (Windows)</text>
+
+  <!-- API -->
+  <g filter="url(#shadow)">
+    <rect x="405" y="175" width="500" height="545" rx="18" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+    <path d="M423 175 H887 A18 18 0 0 1 905 193 V232 H405 V193 A18 18 0 0 1 423 175 Z" fill="url(#apiHeader)"/>
+    <text x="655" y="211" text-anchor="middle" class="section">API ASP.NET Core (.NET 10)</text>
+    <text x="430" y="259" class="small">PROCESSO LOCAL</text>
+    <text x="880" y="259" text-anchor="end" class="mono">localhost:5148</text>
+
+    <rect x="440" y="280" width="430" height="80" rx="12" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <circle cx="472" cy="320" r="17" fill="#7c3aed"/>
+    <path d="M465 320 h14 M472 313 v14" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="505" y="312" class="card-title">Endpoints HTTP + Swagger</text>
+    <text x="505" y="335" class="body">Pedidos, itens e produtos</text>
+
+    <rect x="440" y="380" width="430" height="100" rx="12" fill="#fafafa" stroke="#e2e8f0"/>
+    <text x="462" y="410" class="card-title">Caso de uso: submeter pedido</text>
+    <text x="462" y="435" class="body">1. Valida e altera o estado do pedido</text>
+    <text x="462" y="458" class="body">2. Persiste no banco e publica OrderSubmittedEvent</text>
+
+    <rect x="440" y="500" width="195" height="142" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="537" y="530" text-anchor="middle" class="card-title">Producer Kafka</text>
+    <text x="537" y="556" text-anchor="middle" class="body">Chave: OrderId</text>
+    <text x="537" y="579" text-anchor="middle" class="body">Valor: evento JSON</text>
+    <text x="537" y="602" text-anchor="middle" class="small">Acks.All + idempotência</text>
+
+    <rect x="655" y="500" width="215" height="142" rx="12" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="762" y="530" text-anchor="middle" class="card-title">Consumer Kafka</text>
+    <text x="762" y="556" text-anchor="middle" class="body">BackgroundService</text>
+    <text x="762" y="579" text-anchor="middle" class="body">Commit após sucesso</text>
+    <text x="762" y="602" text-anchor="middle" class="small">Grupo: system-distributed-orders</text>
+
+    <rect x="440" y="661" width="430" height="34" rx="8" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="655" y="683" text-anchor="middle" class="body">Handler processa o evento dentro da própria API</text>
+  </g>
+
+  <!-- SQL Server -->
+  <g filter="url(#shadow)">
+    <rect x="985" y="175" width="350" height="205" rx="18" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+    <rect x="985" y="175" width="350" height="56" rx="18" fill="#0369a1"/>
+    <rect x="985" y="213" width="350" height="18" fill="#0369a1"/>
+    <text x="1160" y="210" text-anchor="middle" class="section">SQL Server local</text>
+    <ellipse cx="1040" cy="280" rx="30" ry="10" fill="#bfdbfe" stroke="#2563eb"/>
+    <path d="M1010 280 v42 c0 6 13 10 30 10 s30-4 30-10 v-42" fill="#dbeafe" stroke="#2563eb"/>
+    <ellipse cx="1040" cy="322" rx="30" ry="10" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="1090" y="276" class="card-title">SystemDistributedOrders</text>
+    <text x="1090" y="303" class="mono">Server=localhost</text>
+    <text x="1090" y="327" class="mono">Trusted_Connection=True</text>
+    <text x="1090" y="352" class="small">EF Core • migrations • dados</text>
+  </g>
+
+  <!-- Docker/Kafka -->
+  <g filter="url(#shadow)">
+    <rect x="955" y="445" width="400" height="300" rx="18" fill="#ffffff" stroke="#9ca3af" stroke-width="2"/>
+    <path d="M973 445 H1337 A18 18 0 0 1 1355 463 V502 H955 V463 A18 18 0 0 1 973 445 Z" fill="url(#kafkaHeader)"/>
+    <text x="1155" y="482" text-anchor="middle" class="section">Docker Desktop</text>
+
+    <rect x="985" y="525" width="340" height="112" rx="12" fill="#f9fafb" stroke="#d1d5db"/>
+    <circle cx="1030" cy="566" r="23" fill="#111827"/>
+    <path d="M1017 558 h26 M1017 566 h26 M1017 574 h26" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="1070" y="558" class="card-title">Apache Kafka 4.2.1</text>
+    <text x="1070" y="584" class="mono">localhost:9092</text>
+    <text x="1070" y="609" class="body">Tópico: orders.submitted.v1</text>
+
+    <path d="M1010 671 q0-15 20-15 h250 q20 0 20 15 v35 q0 15-20 15 h-250 q-20 0-20-15 z" fill="#eef2ff" stroke="#a5b4fc"/>
+    <ellipse cx="1046" cy="680" rx="18" ry="6" fill="#c7d2fe" stroke="#6366f1"/>
+    <path d="M1028 680 v18 c0 4 8 6 18 6 s18-2 18-6 v-18" fill="#e0e7ff" stroke="#6366f1"/>
+    <text x="1080" y="686" class="card-title">Volume Docker persistente</text>
+    <text x="1080" y="708" class="small">Mensagens e offsets sobrevivem ao restart</text>
+  </g>
+
+  <!-- Fluxos -->
+  <path d="M285 345 H385" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="335" y="327" text-anchor="middle" class="flow">HTTP / JSON</text>
+
+  <path d="M905 310 H965" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <path d="M965 310 H905" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)" transform="translate(0,24)"/>
+  <text x="935" y="291" text-anchor="middle" class="flow">EF Core</text>
+
+  <path d="M635 566 C760 720 865 575 975 575" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrowPurple)"/>
+  <rect x="778" y="631" width="128" height="25" rx="6" fill="#f5f3ff"/>
+  <text x="842" y="648" text-anchor="middle" class="flow-purple">publica evento</text>
+
+  <path d="M985 612 C930 680 875 680 828 642" fill="none" stroke="#d97706" stroke-width="3" marker-end="url(#arrowAmber)"/>
+  <rect x="872" y="686" width="128" height="25" rx="6" fill="#fff7ed"/>
+  <text x="936" y="703" text-anchor="middle" class="flow-amber">consome evento</text>
+
+  <!-- Legenda -->
+  <g transform="translate(55 825)">
+    <line x1="0" y1="0" x2="42" y2="0" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    <text x="55" y="5" class="small">HTTP / banco</text>
+    <line x1="190" y1="0" x2="232" y2="0" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrowPurple)"/>
+    <text x="245" y="5" class="small">publicação</text>
+    <line x1="365" y1="0" x2="407" y2="0" stroke="#d97706" stroke-width="3" marker-end="url(#arrowAmber)"/>
+    <text x="420" y="5" class="small">consumo</text>
+    <text x="1330" y="5" text-anchor="end" class="small">Ambiente de desenvolvimento local</text>
+  </g>
+</svg>
