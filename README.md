@@ -24,7 +24,6 @@ O sistema permite:
 
 O código segue os princípios de Clean Architecture: as regras de negócio ficam nas camadas internas e os detalhes externos, como HTTP, SQL Server e Kafka, permanecem nas camadas externas.
 
-![Clean Architecture do projeto](Images/clean-architecture.svg)
 
 ### Dependências entre projetos
 
@@ -65,7 +64,6 @@ SystemDistributedOrders/
 
 A API e o SQL Server executam diretamente na máquina. Apenas o Kafka é iniciado pelo Docker Compose.
 
-![Visão da execução local](Images/runtime-overview.svg)
 
 ### Pré-requisitos
 
